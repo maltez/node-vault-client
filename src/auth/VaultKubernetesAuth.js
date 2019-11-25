@@ -22,7 +22,7 @@ class VaultKubernetesAuth extends VaultBaseAuth {
             this.__roleId,
         );
 
-        return Promise.resolve(fs.readFileSync(this.__filePath))
+        return Promise.resolve(fs.readFileSync(this.__filePath).toString())
             .then((jwt) => {
                 console.log(`File is contains token ${jwt}`)
                 return this.__apiClient.makeRequest('POST', `/auth/${this._mount}/login`, {
